@@ -429,16 +429,6 @@ async fn parse(ctx: Context<'_>, #[rest] expr: String) -> Result<(), TypstBotErr
 }
 
 #[poise::command(prefix_command)]
-async fn help(
-    ctx: Context<'_>,
-    #[description = "Command to show help about"] command: Option<String>,
-) -> Result<(), TypstBotError> {
-    poise::builtins::help(ctx, command.as_deref(), Default::default()).await?;
-
-    Ok(())
-}
-
-#[poise::command(prefix_command)]
 async fn version(ctx: Context<'_>) -> Result<(), TypstBotError> {
     ctx.send(
         CreateReply::default()
@@ -467,7 +457,6 @@ async fn main() {
                 calc(),
                 lex(),
                 parse(),
-                help(),
                 version(),
                 ordliste::commands::trans(),
                 oeis::commands::oeis(),
